@@ -11,7 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t aisthanestha/docker-test-image:latest .'
+				sh 'docker build . -t aisthanestha/docker-test-image:latest .'
 			}
 		}
 
