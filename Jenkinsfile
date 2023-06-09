@@ -26,15 +26,16 @@ pipeline {
 
         stage('Pull and Deploy') {
             steps {
-                def remote [:]
-                remote.name = 'ubuntu-kc'
-                remote.host = '172.16.11.90'
-                remote.allowAnyHosts = true
                 withCredentials([
                     sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'identity', usernameVariable: 'userName')
                 ]) {
+                    script {
+                        def remote = [:]
+                        remote.name = 'ubuntu-kc'
+                        remote.host = '172.16.11.90'
                         remote.user = userName
                         remote.identityFile = identity
+                        remote.allowAnyHosts = true
 
                         writeFile file: 'run-pull-deploy.sh', text: '''
                             docker pull aisthanestha/docker-test-image:latest
@@ -49,6 +50,7 @@ pipeline {
                         // Execute the script file on the remote host
                         sshCommand remote: remote, command: 'chmod +x ~/run-pull-deploy.sh && ~/run-pull-deploy.sh'
                     }
+                }
             }
         }
     }
