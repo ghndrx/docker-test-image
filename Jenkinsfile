@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
     }
 
     stages {
@@ -44,10 +44,10 @@ pipeline {
                         '''
 
                         // Transfer the script file to the remote host
-                        sshPut remote: remote, from: 'run-pull-deploy.sh', into: 'run-pull-deploy.sh'
+                        sshPut remote: remote, from: 'run-pull-deploy.sh', into: '/path/to/remote/directory/run-pull-deploy.sh'
 
                         // Execute the script file on the remote host
-                        sshCommand remote: remote, command: 'chmod +x run-pull-deploy.sh && ./run-pull-deploy.sh'
+                        sshCommand remote: remote, command: 'chmod +x /path/to/remote/directory/run-pull-deploy.sh && /path/to/remote/directory/run-pull-deploy.sh'
                     }
                 }
             }
