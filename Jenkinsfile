@@ -26,8 +26,7 @@ pipeline {
 
         stage('Pull and Deploy') {
             steps {
-                withCredentials([
-                    sshUserPrivateKey(credentialsId: 'ssh-cred', passwordVariable: 'password', usernameVariable: 'userName')
+                withCredentials([(credentialsId: 'ssh-cred', passwordVariable: 'password', usernameVariable: 'userName')
                 ]) {
                     script {
                         def remote = [:]
