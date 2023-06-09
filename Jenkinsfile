@@ -27,13 +27,11 @@ pipeline {
         stage('Pull and Deploy') {
             steps {
                 withCredentials([
-                    sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'identity', usernameVariable: 'SSH_USER')
+                    sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'identity', usernameVariable: 'userName')
                 ]) {
-                    script {
-                        def remote = [:]
                         remote.name = 'ubuntu-kc'
                         remote.host = '172.16.11.90'
-                        remote.user = SSH_USER
+                        remote.user = userName
                         remote.identityFile = identity
                         remote.allowAnyHosts = true
 
