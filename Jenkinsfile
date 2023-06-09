@@ -33,10 +33,10 @@ pipeline {
   					    remote.password = 'Password1!'
   					    remote.allowAnyHosts = true
   					     // Provide a label for the Jenkins agent
-					    writeFile file: 'run-pull-deploy.sh', text: 'docker pull aisthanestha/docker-test-image:latest &&
+					    writeFile file: 'run-pull-deploy.sh', text: '''docker pull aisthanestha/docker-test-image:latest &&
 											docker stop docker-test-image &&
 											docker rm docker-test-image &&
-											docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'
+											docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'''
     					sshScript remote: remote, script: 'run-pull-deploy.sh'
 
 					}
