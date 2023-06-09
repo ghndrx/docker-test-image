@@ -39,7 +39,7 @@ pipeline{
 	// 	}
 	// }        
 		stage('Pull and Deploy') 
-			steps 
+			steps {
 				// Send commands to remote Docker host via SSH
 				script {
                     sshCommand remote: [
@@ -54,11 +54,11 @@ pipeline{
 				'''
 				}
 			}
-		 
+
 	post {
 		always {
 			sh 'docker logout'
 		}
 	}
-
+}
 
