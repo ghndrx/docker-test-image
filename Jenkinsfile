@@ -30,8 +30,8 @@ pipeline {
                     def remote = [:]
                     remote.name = 'ubuntu-kc'
                     remote.host = '172.16.11.90'
-            		remote.user = "${SSH_CREDENTIALS_USR}"
-            		remote.password = "${SSH_CREDENTIALS_PSW}"
+            		remote.user = "greg"
+            		remote.password = "Password1!"
                     remote.allowAnyHosts = true
                     
                     writeFile file: 'run-pull-deploy.sh', text: '''
