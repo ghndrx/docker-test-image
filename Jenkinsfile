@@ -31,11 +31,11 @@ pipeline {
                 ]) {
                     script {
                         def remote = [:]
+                        remote.allowAnyHosts = true
                         remote.name = 'ubuntu-kc'
                         remote.host = '172.16.11.90'
                         remote.user = userName
                         remote.identityFile = identity
-                        remote.allowAnyHosts = true
 
                         writeFile file: 'run-pull-deploy.sh', text: '''
                             docker pull aisthanestha/docker-test-image:latest
