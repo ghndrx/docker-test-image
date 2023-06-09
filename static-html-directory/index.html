@@ -2,27 +2,45 @@
 <html>
 <head>
   <title>Latest Commit</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .commit-details {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .commit-details h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .commit-details p {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <div class="profile">
-      <img src="avatar.jpg" alt="GitHub Avatar" class="avatar">
-      <h1>GitHub Profile</h1>
-      <div class="profile-details">
-        <p><strong>Name:</strong> Gregory Hendrickson</p>
-        <p><strong>Username:</strong> ghndrx</p>
-        <p><strong>Location:</strong> Sacramento, California</p>
-
-      </div>
-      <a href="https://github.com/ghndrx" class="profile-link">Visit Profile</a>
-    </div>
-    <div class="commit">
-      <h2>Latest Commit</h2>
-      <div id="commit-info"></div>
+    <h1>Latest Commit</h1>
+    <div class="commit-details">
+      <h2>Repository: ghndrx/docker-test-image</h2>
+      <p><strong>Commit:</strong> abcdef1234567890</p>
+      <p><strong>Author:</strong> John Doe</p>
+      <p><strong>Date:</strong> June 1, 2023</p>
+      <p><strong>Message:</strong> Added new feature</p>
+      <p><strong>Files Changed:</strong> 3</p>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
