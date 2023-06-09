@@ -26,15 +26,15 @@ pipeline {
 
         stage('Pull and Deploy') {
             steps {
+                def remote [:]
+                remote.name = 'ubuntu-kc'
+                remote.host = '172.16.11.90'
+                remote.allowAnyHosts = true
                 withCredentials([
                     sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'identity', usernameVariable: 'userName')
                 ]) {
-                        def remote [:]
-                        remote.name = 'ubuntu-kc'
-                        remote.host = '172.16.11.90'
                         remote.user = userName
                         remote.identityFile = identity
-                        remote.allowAnyHosts = true
 
                         writeFile file: 'run-pull-deploy.sh', text: '''
                             docker pull aisthanestha/docker-test-image:latest
