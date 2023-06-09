@@ -53,10 +53,9 @@ pipeline{
 					docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
 				'''
 				}
-				
-			
-		
-	
+			}
+		}
+	}     
 	post {
 		always {
 			sh 'docker logout'
