@@ -38,7 +38,7 @@ pipeline {
                         docker pull aisthanestha/docker-test-image:latest
                         docker stop docker-test-image
                         docker rm docker-test-image
-                        docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
+                        docker run -d --name docker-test-image -p 8082:80 aisthanestha/docker-test-image:latest
                     '''
                     
 							// Transfer the script file to the remote host
