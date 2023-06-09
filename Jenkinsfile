@@ -4,6 +4,7 @@ pipeline{
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+		ssh_credentials=credentials('ssh_credentials')
 	}
 
 	stages {
