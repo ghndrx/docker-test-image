@@ -29,7 +29,7 @@ pipeline{
 				sh 'docker push aisthanestha/docker-test-image:latest'
 			}
 		}
-	}
+
 		stage('Deploy') {
 		steps {
 			// Deploy to remote Docker host
