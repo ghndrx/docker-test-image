@@ -26,17 +26,18 @@ pipeline {
 
 		stage('Pull and Deploy') {
 			steps {
-				script {
-					sshCommand remote: [
-						credentialsId: 'SSH_CREDENTIALS',
-						host: '172.16.11.90',
-						username: 'administrator'
-					], command: '''
-						docker pull aisthanestha/docker-test-image:latest
-						docker stop docker-test-image
-						docker rm docker-test-image
-						docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
-					'''
+				node {
+					script {
+						sshCommand remote: [
+							credentialsId: 'SSH_CREDENTIALS',
+							host: '172.16.11.90',
+							username: 'administrator'
+						], command: '''
+							docker pull aisthanestha/docker-test-image:latest
+							docker stop docker-test-image
+							docker rm docker-test-image
+							docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
+						'''
 				}
 			}
 		}
