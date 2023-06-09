@@ -33,8 +33,8 @@ pipeline {
                         def remote = [:]
                         remote.name = 'ubuntu-kc'
                         remote.host = '172.16.11.90'
-                        remote.user = "${SSH_USER}"
-                        remote.keyFile = "${IDENTITY}"
+                        remote.user = SSH_USER
+                        remote.identityFile = identity
                         remote.allowAnyHosts = true
 
                         writeFile file: 'run-pull-deploy.sh', text: '''
