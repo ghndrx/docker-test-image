@@ -48,6 +48,7 @@ pipeline {
 		always {
 			node('any'){
 				sh 'docker logout'
+				sh 'echo END'
 			}
 		}
 	}
