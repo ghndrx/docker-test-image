@@ -6,7 +6,7 @@ pipeline{
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
 	}
 
-	stages {
+	stages 
 
 		stage('Build') {
 
@@ -38,28 +38,30 @@ pipeline{
 	// 		}
 	// 	}
 	// }        
-		stage('Pull and Deploy') {
-			steps {
+		stage('Pull and Deploy') 
+			steps 
 				// Send commands to remote Docker host via SSH
-				withCredentials([usernamePassword(credentialsId: 'SSH_CREDENTIALS', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
-                    script {
-                        def sshUsername = env.SSH_USERNAME
-                        def sshPassword = env.SSH_PASSWORD
-
-                    sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker pull aisthanestha/docker-test-image:latest'
-					sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker stop docker-test-image || true'
-					sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker rm docker-test-image || true'
-					sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'
-				
+				script {
+                    sshCommand remote: [
+                        credentialsId: 'SSH_CREDENTIALS',
+                        host: 'REMOTE_HOST',
+                        username: 'REMOTE_USER'
+                    ], command: '''
+                    docker pull aisthanestha/docker-test-image:latest
+					docker stop docker-test-image 
+					docker rm docker-test-image 
+					docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
+				'''
 				}
-			}
-		}
-	}
+				
+			
+		
+	
 	post {
 		always {
 			sh 'docker logout'
 		}
 	}
 
-}
+
 
