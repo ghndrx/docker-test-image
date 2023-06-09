@@ -26,7 +26,7 @@ pipeline {
 
 		stage('Pull and Deploy') {
 			steps {
-				node {
+				node('any') { // Provide a label for the Jenkins agent
 					script {
 						sshCommand remote: [
 							credentialsId: 'SSH_CREDENTIALS',
