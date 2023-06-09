@@ -26,7 +26,7 @@ pipeline {
 
         stage('Pull and Deploy') {
             steps {
-                withCredentialss([usernamePassword(credentialsId: 'ssh-cred', passwordVariable: 'password', usernameVariable: 'userName')]) {
+                withCredentials([usernamePassword(credentialsId: 'ssh-cred', passwordVariable: 'password', usernameVariable: 'userName')]) {
                     script {
                         def remote = [:]
                         remote.allowAnyHosts = true
