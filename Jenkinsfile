@@ -1,8 +1,8 @@
 pipeline {
 	agent any
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
-		SSH_CREDENTIALS=credentials('SSH-CREDENTIALS')
+		DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
+		SSH_CREDENTIALS = credentials('SSH-CREDENTIALS')
 	}
 	
 	stages {
@@ -38,10 +38,10 @@ pipeline {
 							docker rm docker-test-image
 							docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
 						'''
+					}
 				}
 			}
 		}
-	}
 	}
 	
 	post {
