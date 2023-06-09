@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
-        SSH_CREDENTIALS=credentials('SSH-CREDENTIALS')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
+        SSH_CREDENTIALS = credentials('SSH-CREDENTIALS')
     }
     
     stages {
@@ -30,8 +30,8 @@ pipeline {
                     def remote = [:]
                     remote.name = 'ubuntu-kc'
                     remote.host = '172.16.11.90'
-                    remote.user = 'greg'
-                    remote.password = 'Password1!'
+                    remote.user = "${SSH_CREDENTIALS_USR}"
+                    remote.password = "${SSH_CREDENTIALS_PSW}"
                     remote.allowAnyHosts = true
                     
                     writeFile file: 'run-pull-deploy.sh', text: '''
