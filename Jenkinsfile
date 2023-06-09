@@ -45,6 +45,7 @@ pipeline{
                     script {
                         def sshUsername = env.SSH_USERNAME
                         def sshPassword = env.SSH_PASSWORD
+
                     sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker pull aisthanestha/docker-test-image:latest'
 					sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker stop docker-test-image || true'
 					sh 'sshpass -p '${env.SSH_PASSWORD}' ssh ${env.SSH_USERNAME}@172.16.11.90 docker rm docker-test-image || true'
