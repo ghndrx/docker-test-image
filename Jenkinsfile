@@ -44,8 +44,8 @@ pipeline{
 				script {
                     sshCommand remote: [
                         credentialsId: 'SSH_CREDENTIALS',
-                        host: 'REMOTE_HOST',
-                        username: 'REMOTE_USER'
+                        host: '172.16.11.90',
+                        username: '172.16.11.90'
                     ], command: '''
                     docker pull aisthanestha/docker-test-image:latest
 					docker stop docker-test-image 
