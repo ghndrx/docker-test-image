@@ -41,13 +41,15 @@ pipeline {
                         docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
                     '''
                     
-                    node('any') {
-                        sshScript remote: remote, script: 'run-pull-deploy.sh'
-                    }
+							// Transfer the script file to the remote host
+					sshPut remote: remote, from: 'run-pull-deploy.sh', into: 'run-pull-deploy.sh'
+
+					// Execute the script file on the remote host
+					sshCommand remote: remote, command: 'chmod +x run-pull-deploy.sh && ./run-pull-deploy.sh'
+        			}
                 }
             }
         }
-    }
 
     post {
         always {
