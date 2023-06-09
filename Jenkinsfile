@@ -38,14 +38,15 @@ pipeline{
 	// 		}
 	// 	}
 	// }        
-	stage('Pull and Deploy') {
-		steps {
-			// Send commands to remote Docker host via SSH
-			sshagent(credentials: ['SSH_CREDENTIALS']) {
-				sh 'ssh administrator@172.16.11.90 docker pull aisthanestha/docker-test-image:latest'
-				sh 'ssh administrator@172.16.11.90 docker stop docker-test-image || true'
-				sh 'ssh administrator@172.16.11.90 docker rm docker-test-image || true'
-				sh 'ssh administrator@172.16.11.90 docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'
+		stage('Pull and Deploy') {
+			steps {
+				// Send commands to remote Docker host via SSH
+				sshagent(credentials: ['SSH_CREDENTIALS']) {
+					sh 'ssh administrator@172.16.11.90 docker pull aisthanestha/docker-test-image:latest'
+					sh 'ssh administrator@172.16.11.90 docker stop docker-test-image || true'
+					sh 'ssh administrator@172.16.11.90 docker rm docker-test-image || true'
+					sh 'ssh administrator@172.16.11.90 docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'
+				}
 			}
 		}
 	}
