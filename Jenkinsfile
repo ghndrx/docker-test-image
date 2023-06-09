@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+        SSH_CREDENTIALS=credentials('ssh-cred')
     }
 
     stages {
@@ -26,7 +27,7 @@ pipeline {
         stage('Pull and Deploy') {
             steps {
                 withCredentials([
-                    sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')
+                    sshUserPrivateKey(credentialsId: 'ssh-cred', identity: 'SSH_KEY', usernameVariable: 'SSH_USER')
                 ]) {
                     script {
                         def remote = [:]
