@@ -46,7 +46,7 @@ pipeline {
 
 	post {
 		always {
-			node {
+			node('any'){
 				sh 'docker logout'
 			}
 		}
