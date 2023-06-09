@@ -29,6 +29,7 @@ pipeline {
                 withCredentials([
                     sshUserPrivateKey(credentialsId: 'ssh-cred', keyFileVariable: 'identity', usernameVariable: 'userName')
                 ]) {
+                    
                         remote.name = 'ubuntu-kc'
                         remote.host = '172.16.11.90'
                         remote.user = userName
@@ -48,7 +49,6 @@ pipeline {
                         // Execute the script file on the remote host
                         sshCommand remote: remote, command: 'chmod +x ~/run-pull-deploy.sh && ~/run-pull-deploy.sh'
                     }
-                }
             }
         }
     }
