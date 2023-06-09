@@ -1,8 +1,8 @@
 pipeline {
 	agent any
 	environment {
-		DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
-		SSH_CREDENTIALS = credentials('SSH-CREDENTIALS')
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+		SSH_CREDENTIALS=credentials('SSH-CREDENTIALS')
 	}
 	
 	stages {
@@ -23,11 +23,7 @@ pipeline {
 				sh 'docker push aisthanestha/docker-test-image:latest'
 			}
 		}
-		post {
-			always {
-				sh 'docker logout'
-			}
-		}
+
 		stage('Pull and Deploy') {
 			steps {
 				node('any') { // Provide a label for the Jenkins agent
@@ -47,6 +43,11 @@ pipeline {
 			}
 		}
 	}
-	
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
 
 }
