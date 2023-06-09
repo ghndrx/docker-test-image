@@ -1,9 +1,10 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
+        SSH_CREDENTIALS = credentials('SSH_CREDENTIALS')
     }
-
+    
     stages {
         stage('Build') {
             steps {
@@ -25,30 +26,23 @@ pipeline {
 
         stage('Pull and Deploy') {
             steps {
-                withCredentials([
-                    usernamePassword(credentialsId: 'ssh-cred', usernameVariable: 'SSH_USER', passwordVariable: 'SSH_PASSWORD')
-                ]) {
-                    script {
-                        def remote = [:]
-                        remote.name = 'ubuntu-kc'
-                        remote.host = '172.16.11.90'
-                        remote.user = "${SSH_USER}"
-                        remote.password = "${SSH_PASSWORD}"
-                        remote.allowAnyHosts = true
+                script {
+                    def remote = [:]
+                    remote.name = 'ubuntu-kc'
+                    remote.host = '172.16.11.90'
+                    remote.user = 'greg'
+                    remote.password = sshCredentials(credentialsId: 'SSH_CREDENTIALS', variable: 'SSH_PASSWORD')
+                    remote.allowAnyHosts = true
 
-                        writeFile file: 'run-pull-deploy.sh', text: '''
-                            docker pull aisthanestha/docker-test-image:latest
-                            docker stop docker-test-image
-                            docker rm docker-test-image
-                            docker run -d --name docker-test-image -p 8082:80 aisthanestha/docker-test-image:latest
-                        '''
+                    writeFile file: 'run-pull-deploy.sh', text: '''
+                        docker pull aisthanestha/docker-test-image:latest
+                        docker stop docker-test-image
+                        docker rm docker-test-image
+                        docker run -d --name docker-test-image -p 8082:80 aisthanestha/docker-test-image:latest
+                    '''
 
-                        // Transfer the script file to the remote host
-                        sshPut remote: remote, from: 'run-pull-deploy.sh', into: '/path/to/remote/directory/run-pull-deploy.sh'
-
-                        // Execute the script file on the remote host
-                        sshCommand remote: remote, command: 'chmod +x /path/to/remote/directory/run-pull-deploy.sh && /path/to/remote/directory/run-pull-deploy.sh'
-                    }
+                    sshPut remote: remote, from: 'run-pull-deploy.sh', into: '/path/to/remote/directory/run-pull-deploy.sh'
+                    sshCommand remote: remote, command: 'chmod +x /path/to/remote/directory/run-pull-deploy.sh && /path/to/remote/directory/run-pull-deploy.sh'
                 }
             }
         }
