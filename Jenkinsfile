@@ -23,24 +23,26 @@ pipeline {
 				sh 'docker push aisthanestha/docker-test-image:latest'
 			}
 		}
-
 		stage('Pull and Deploy') {
 			steps {
-				node('any') { // Provide a label for the Jenkins agent
-					script {
-						sshCommand remote: [
-							credentialsId: 'SSH_CREDENTIALS',
-							host: '172.16.11.90',
-							username: 'administrator'
-						], command: '''
-							docker pull aisthanestha/docker-test-image:latest
-							docker stop docker-test-image
-							docker rm docker-test-image
-							docker run -d --name docker-test-image aisthanestha/docker-test-image:latest
-						'''
+				node('any') {
+					    def remote = [:]
+  					    remote.name = 'ubuntu-kc'
+  					    remote.host = '172.16.11.90'
+  					    remote.user = 'greg'
+  					    remote.password = 'Password1!'
+  					    remote.allowAnyHosts = true
+  					     // Provide a label for the Jenkins agent
+					    writeFile file: 'run-pull-deploy.sh', text: 'docker pull aisthanestha/docker-test-image:latest &&
+											docker stop docker-test-image &&
+											docker rm docker-test-image &&
+											docker run -d --name docker-test-image aisthanestha/docker-test-image:latest'
+    					sshScript remote: remote, script: 'run-pull-deploy.sh'
+
 					}
 				}
 			}
+		
 		}
 	}
 
@@ -48,7 +50,6 @@ pipeline {
 		always {
 			node('any'){
 				sh 'docker logout'
-				sh 'echo END'
 			}
 		}
 	}
