@@ -61,6 +61,52 @@ body {
     margin-left: 10px;
   }
   
+  .dark-grey-purple header nav a {
+    color: #ffffff;
+  }
+  
+  .dark-grey-purple header #menu-toggle {
+    display: block;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .dark-grey-purple header #menu-toggle span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+  }
+  
+  .dark-grey-purple header #menu-toggle span:nth-child(1) {
+    top: 0;
+  }
+  
+  .dark-grey-purple header #menu-toggle span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .dark-grey-purple header #menu-toggle span:nth-child(3) {
+    bottom: 0;
+  }
+  
+  .dark-grey-purple header #menu-toggle.active span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  
+  .dark-grey-purple header #menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .dark-grey-purple header #menu-toggle.active span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  
   .dark-grey-purple main {
     padding-top: 80px;
   }
@@ -83,11 +129,14 @@ body {
   
     .dark-grey-purple header #menu-toggle {
       display: block;
-      width: 30px;
-      height: 20px;
-      background-color: #ffffff;
-      border-radius: 4px;
-      cursor: pointer;
+    }
+  
+    .dark-grey-purple header #menu-toggle span {
+      background-color: #000000;
+    }
+  
+    .dark-grey-purple header #menu-toggle.active span {
+      background-color: transparent;
     }
   
     .dark-grey-purple header #main-nav {
