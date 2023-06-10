@@ -58,6 +58,7 @@ body {
   .dark-grey-purple header nav ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end; /* Align menu items to the right */
   }
   
   .dark-grey-purple header nav li {
@@ -146,6 +147,12 @@ body {
       display: none;
       padding-left: 20px;
       padding-bottom: 10px;
+      position: absolute; /* Change position to absolute */
+      top: 50px; /* Adjust the top position as needed */
+      left: 10px; /* Adjust the left position as needed */
+      background-color: #191919; /* Add a background color */
+      z-index: 999; /* Increase z-index to ensure visibility */
+      width: 200px; /* Adjust width as needed */
     }
   
     .dark-grey-purple header #main-nav.active {
