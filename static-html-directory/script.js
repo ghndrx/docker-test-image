@@ -26,4 +26,29 @@ window.addEventListener('DOMContentLoaded', async () => {
       console.error('Error fetching commits:', error);
     }
   });
+  document.addEventListener("DOMContentLoaded", function() {
+    // Hamburger menu toggle
+    var menuToggle = document.getElementById("menu-toggle");
+    var mainNav = document.getElementById("main-nav");
+  
+    menuToggle.addEventListener("click", function() {
+      mainNav.classList.toggle("active");
+    });
+  
+    // Hide menu when scrolling down
+    var prevScrollPos = window.pageYOffset;
+    var header = document.querySelector("header");
+  
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+  
+      if (prevScrollPos > currentScrollPos) {
+        header.classList.remove("hidden");
+      } else {
+        header.classList.add("hidden");
+      }
+  
+      prevScrollPos = currentScrollPos;
+    };
+  });
   
