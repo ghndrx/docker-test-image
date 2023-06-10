@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  #latest-commits {
+    margin-bottom: 20px;
+  }
+  
+  .commit {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .commit p {
+    margin: 0;
+  }
+  
+  .commit p strong {
+    font-weight: bold;
+  }
+  
+  .commit p:not(:last-child) {
+    margin-bottom: 5px;
+  }
+  
