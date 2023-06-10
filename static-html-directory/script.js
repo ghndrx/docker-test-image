@@ -1,24 +1,27 @@
-const commitInfoElement = document.getElementById('commit-info');
-
-fetch('https://api.github.com/repos/ghndrx/docker-test-image/commits')
-  .then(response => response.json())
-  .then(data => {
-    if (data.length > 0) {
-      const latestCommit = data[0];
-      const commitMessage = latestCommit.commit.message;
-      const commitAuthor = latestCommit.commit.author.name;
-      const commitDate = new Date(latestCommit.commit.author.date).toLocaleString();
-
-      commitInfoElement.innerHTML = `
-        <p><strong>Message:</strong> ${commitMessage}</p>
-        <p><strong>Author:</strong> ${commitAuthor}</p>
-        <p><strong>Date:</strong> ${commitDate}</p>
-      `;
-    } else {
-      commitInfoElement.innerHTML = '<p>No commits found.</p>';
+window.addEventListener('DOMContentLoaded', async () => {
+    const repository = 'ghndrx/docker-test-image'; // Replace with your desired repository
+  
+    try {
+      const response = await fetch(`https://api.github.com/repos/${repository}/commits`);
+      const commits = await response.json();
+  
+      const commitList = document.getElementById('commit-list');
+  
+      if (commits.length > 0) {
+        commits.forEach(commit => {
+          const commitElement = document.createElement('div');
+          commitElement.classList.add('commit');
+          commitElement.innerHTML = `
+            <p><strong>${commit.commit.author.name}</strong></p>
+            <p>${commit.commit.message}</p>
+          `;
+          commitList.appendChild(commitElement);
+        });
+      } else {
+        commitList.innerHTML = '<p>No commits found.</p>';
+      }
+    } catch (error) {
+      console.error('Error fetching commits:', error);
     }
-  })
-  .catch(error => {
-    commitInfoElement.innerHTML = '<p>Error loading commit information.</p>';
-    console.error(error);
   });
+  
