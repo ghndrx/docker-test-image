@@ -1,59 +1,84 @@
+/* Add these styles to your existing styles.css file or create a new one */
+
+/* Common Styles */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
   }
   
-  header {
-    background-color: #333;
-    color: #fff;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
   }
   
   h1 {
     margin: 0;
+    color: #ffffff;
   }
   
-  nav ul {
+  h2 {
+    margin-top: 40px;
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
   
-  nav ul li {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  nav ul li a {
-    color: #fff;
+  a {
     text-decoration: none;
+    color: #ffffff;
   }
   
-  main {
-    padding: 20px;
+  /* Theme Styles */
+  .dark-grey-purple {
+    background-color: #2b2b2b;
+    color: #ffffff;
   }
   
-  #latest-commits {
-    margin-bottom: 20px;
-  }
-  
-  .commit {
-    background-color: #f1f1f1;
-    border-radius: 5px;
+  .dark-grey-purple header {
+    background-color: #191919;
     padding: 10px;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  .commit p {
-    margin: 0;
+  .dark-grey-purple #menu-toggle {
+    width: 30px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
   }
   
-  .commit p strong {
-    font-weight: bold;
+  .dark-grey-purple #main-nav {
+    display: none;
   }
   
-  .commit p:not(:last-child) {
-    margin-bottom: 5px;
+  .dark-grey-purple #main-nav ul {
+    display: flex;
+  }
+  
+  .dark-grey-purple #main-nav ul li {
+    margin-left: 20px;
+  }
+  
+  /* Media Query */
+  @media screen and (max-width: 768px) {
+    .dark-grey-purple #main-nav {
+      display: block;
+    }
+  
+    .dark-grey-purple #main-nav ul {
+      flex-direction: column;
+    }
+  
+    .dark-grey-purple #main-nav ul li {
+      margin: 10px 0;
+    }
   }
   
