@@ -3,64 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile</title>
+  <title>Home - My Profile</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark-grey-purple">
   <header>
-    <h1>My Profile</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>My Profile</h1>
+      <div id="menu-toggle"></div>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
     <section id="latest-commits">
       <h2>Latest Commits</h2>
-      <div id="commit-list"></div>
+      <div id="commit-list">
+        <!-- Latest commits will be dynamically loaded here -->
+      </div>
     </section>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        Hello! My name is Gregory, and I have a passion for coffee, dogs, sports cars, computer servers, and automation.
-      </p>
-      <h3>Coffee Enthusiast</h3>
-      <p>
-        Coffee has always been an integral part of my daily routine. There's something magical about the aroma and taste of a freshly brewed cup of coffee that fuels my creativity and productivity.
-      </p>
-      <h3>Dog Lover</h3>
-      <p>
-        I'm a proud dog parent and believe that dogs bring immense joy and companionship into our lives. My furry friend Riker is not just a pet but a beloved member of my family.
-      </p>
-      <h3>Sports Car Enthusiast</h3>
-      <p>
-        I have a deep admiration for sports cars. The sleek design, powerful engines, and precision engineering fascinate me. I enjoy keeping up with the latest trends and advancements in the automotive world.
-      </p>
-      <h3>Computer Servers and Automation</h3>
-      <p>
-        As a graduate of Dakota State University with a B.S. in Network Security & Administration, I developed a strong interest in computer servers and automation. I'm fascinated by the complexities of server infrastructure and passionate about leveraging automation to streamline processes and enhance efficiency.
-      </p>
-      <h3>Educational Background</h3>
-      <p>
-        I graduated from Dakota State University in 2018 with a B.S. in Network Security & Administration. During my time at the university, I gained valuable knowledge and skills in network security, administration, and other relevant areas of study.
-      </p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>If you have any inquiries or would like to connect, feel free to reach out to me:</p>
-      <ul>
-        <li><strong>Email:</strong> <a href="mailto:greg@hndrx.co">greg@hndrx.co</a></li>
-        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/grhendrickson/">LinkedIn Profile</a></li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/ghndrx/">GitHub Profile</a></li>
-      </ul>
-    </section>
-  
   </main>
 
   <script src="script.js"></script>
