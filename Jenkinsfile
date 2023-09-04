@@ -29,8 +29,8 @@ pipeline {
                     script {
                         def remote = [:]
                         remote.allowAnyHosts = true
-                        remote.name = 'ubuntu-kc'
-                        remote.host = '172.16.11.90'
+                        remote.name = 'masternode'
+                        remote.host = '172.16.10.100'
                         remote.user = userName
                         remote.password = password
                         
